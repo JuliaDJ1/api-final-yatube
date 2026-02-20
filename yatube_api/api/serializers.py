@@ -34,7 +34,7 @@ class FollowSerializer(serializers.ModelSerializer):
     user = SlugRelatedField(slug_field='username', read_only=True)
     following = SlugRelatedField(
         slug_field='username',
-        queryset=User.objects.all()
+        queryset=User.objects.all(),
     )
 
     class Meta:
@@ -55,7 +55,8 @@ class FollowSerializer(serializers.ModelSerializer):
         following = data['following']
 
         if Follow.objects.filter(user=user, following=following).exists():
-            msg = 'Вы уже подписаны на этого пользователя'
-            raise serializers.ValidationError({'following': msg})
+            raise serializers.ValidationError(
+                {'following': 'Вы уже подписаны на этого пользователя'}
+            )
 
         return data
