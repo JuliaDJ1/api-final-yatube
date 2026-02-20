@@ -88,7 +88,6 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ],
-    # Глобальную пагинацию НЕ ставим — чтобы остальные тесты получали список
     'DEFAULT_FILTER_BACKENDS': [
         'rest_framework.filters.SearchFilter',
         'django_filters.rest_framework.DjangoFilterBackend',
